@@ -1,11 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-//const connection = require('./connection');
+const connection = require('./connection');
 const calculoFecha =require('./Inscripcion/calculoFecha');
 
 const app = express();
 
-console.log(calculoFecha('1111-11-13','epica','2022-09-17'));
 
 //connection
 
@@ -16,6 +15,12 @@ let corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+//routes
+app.use('/api', require('./routes/inscripciones.routes'));
+
+
+//starting the server
 
 const port = process.env.PORT || 4000;
 

@@ -52,7 +52,7 @@ function carnetTermina3(fecha){
 function dermasTerminaciones(fecha){
     let fechaNueva = new Date(fecha);
     let diaDeLaSemana = fechaNueva.getDay();
-    console.log('dia de la semana '+diaDeLaSemana);
+    //console.log('dia de la semana '+diaDeLaSemana);
     let dias =0;
     for(let i =0; i<8; i++){
         if(diaDeLaSemana==5){

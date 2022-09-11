@@ -1,5 +1,6 @@
-const estudiante = require ('../models/estudiante');
-const inscripcion = require ('../models/inscripcion');
+const Estudiante = require ('../models/estudiante');
+const Inscripcion = require ('../models/inscripcion');
+const CalculoFecha = require ('../Inscripcion/calculoFecha');
 
 const estudianteNuevo = async (req, res) => {
     const estudiante = new Estudiante({
@@ -8,19 +9,19 @@ const estudianteNuevo = async (req, res) => {
         direccion: req.body.direccion,
         genero: req.body.genero,
         telefono: req.body.telefono,
-        fechaNacimiento: req.body.fechaNacimiento,
+        fechaNacimiento: new Date(req.body.fechaNacimiento),
         carrera: req.body.carrera,
         //generoPoesia: req.body.generoPoesia
     });
     const inscripcion = new Inscripcion({
         carnet: req.body.carnet,
         generoPoesia: req.body.generoPoesia,
-        fechaAParticipar: CalculoFecha(req.body.carnet, req.body.generoPoesia, req.body.fechaNacimiento)
+        fechaAParticipar: CalculoFecha(req.body.carnet, req.body.generoPoesia, Date.now())
     });
     try {
         const estudianteGuardado = await estudiante.save();
         const inscripcionGuardada = await inscripcion.save();
-        res.json(estudianteGuardado + inscripcionGuardada);
+        res.json({estudianteGuardado,inscripcionGuardada});
     } catch (error) {
         res.json({ message: error });
     }
@@ -30,7 +31,7 @@ const inscripcionNueva = async (req, res) => {
     const inscripcion = new Inscripcion({
         carnet: req.body.carnet,
         generoPoesia: req.body.generoPoesia,
-        fechaAParticipar: CalculoFecha(req.body.carnet, req.body.generoPoesia, req.body.fechaNacimiento)
+        fechaAParticipar: CalculoFecha(req.body.carnet, req.body.generoPoesia, Date.now())
     });
     try {
         const inscripcionGuardada = await inscripcion.save();
