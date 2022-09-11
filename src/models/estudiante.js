@@ -29,10 +29,6 @@ const estudianteSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    generoPoesia: {
-        type: String,
-        required: true
-    },
     fechaInscripcion: {
         type: Date,
         default: Date.now
