@@ -1,9 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const connection = require('./connection');
+//const connection = require('./connection');
+const calculoFecha =require('./Inscripcion/calculoFecha');
 
 const app = express();
-connection
+
+console.log(calculoFecha('1111-11-13','epica','2022-09-17'));
+
+//connection
 
 let corsOptions = {
     origin: '*',
