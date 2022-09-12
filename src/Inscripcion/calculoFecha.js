@@ -6,7 +6,7 @@ function calculoFecha (carnet,poesia, fecha){
         res=carnetTermina1(fecha);
     }
     else if(lastChar=='3'&&poesia=='epica'){
-        res=carnetTermina3(fecha);
+        res=carnetTermina3(new Date(fecha));
     }else{
         res=dermasTerminaciones(fecha);
     }
@@ -34,9 +34,10 @@ function carnetTermina1(fecha){
 }
 
 function carnetTermina3(fecha){
-    let fechaArray=fecha.split("-");
+    let fechita = fecha.getFullYear()+'-'+(fecha.getMonth()+1)+'-'+fecha.getDate();
+    let fechaArray=fechita.split("-");
     let fechaNueva= new Date(fechaArray[0],fechaArray[1],0).getDate();
-    console.log('este mes tiene estos dias '+fechaNueva);
+    //console.log('este mes tiene estos dias '+fechaNueva);
     let futuraFecha = new Date(fechaArray[0],fechaArray[1]-1,fechaNueva);
     let diaDeLaSemana = futuraFecha.getDay();
 
