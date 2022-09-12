@@ -59,4 +59,13 @@ const obtenerInscripcionesPorCarnet = async (req, res) => {
     }
 }
 
-module.exports = { estudianteNuevo, inscripcionNueva, obtenerEstudiantesPorCarnet, obtenerInscripcionesPorCarnet };
+const obtenerEstudiante = async (req, res) => {
+    try {
+        const estudiantes = await Estudiante.find();
+        res.json(estudiantes);
+    } catch (error) {
+        res.json({ message: error });
+    }
+}
+
+module.exports = { estudianteNuevo, inscripcionNueva, obtenerEstudiantesPorCarnet, obtenerInscripcionesPorCarnet, obtenerEstudiante };
